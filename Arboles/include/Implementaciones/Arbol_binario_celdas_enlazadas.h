@@ -10,7 +10,7 @@ class AbinEnla
 
 public:
     typedef celda *nodo;
-    static const nodo NODO_NULO;    // Propiedad de la clase
+    static const nodo NODO_NULO;    // Propiqedad de la clase
     AbinEnla();
     void insertarRaiz(const T &e);
     void insertarHijoIzqdo(nodo n, const T &e);
