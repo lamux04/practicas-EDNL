@@ -25,6 +25,8 @@ public:
     nodo padre(nodo n) const;
     nodo hijoIzqdo(nodo n) const;
     nodo hijoDrcho(nodo n) const;
+    int altura(nodo n) const;
+    int profundidad(nodo n) const;
     AbinVec(const AbinVec<T> &A);
     AbinVec<T> &operator=(const AbinVec<T> &A);
     ~AbinVec();
@@ -206,6 +208,40 @@ typename AbinVec<T>::nodo AbinVec<T>::hijoDrcho(nodo n) const
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].hder;
 }
+
+template <typename T>
+int AbinVec<T>::profundidad(nodo n) const
+{
+    assert(n != NODO_NULO);
+    int i = 0;
+
+    while (n != 0)
+    {
+        ++i;
+        n = nodos[n].padre;
+    }
+
+    return i;
+}
+
+template <typename T>
+int AbinVec<T>::altura(nodo n) const
+{
+    if (n == NODO_NULO)
+        return -1;
+
+    else
+    {
+        int aizq = altura(nodos[n].hizq),
+            ader = altura(nodos[n].hder);
+
+        if (aizq > ader)
+            return aizq + 1;
+        else
+            return ader + 1;
+    }
+}
+
 
 template <typename T>
 AbinVec<T>::AbinVec(const AbinVec<T> &A) :   

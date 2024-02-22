@@ -6,8 +6,10 @@
 #include "pruebas/AbinVec_Prueba.h"
 #include "pruebas/AbinRel_Prueba.h"
 
+#include "pruebas/pruebas_p0.hpp"
+
 int main() {
-    prueba_abin_enla();
-    prueba_abin_rel();
+
+    prueba_pseudocompleto_abin();
     return 0;
 }

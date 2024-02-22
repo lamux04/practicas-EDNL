@@ -25,6 +25,8 @@ public:
     nodo padre(nodo n) const;
     nodo hijoIzqdo(nodo n) const;
     nodo hijoDrcho(nodo n) const;
+    int altura(nodo n) const;
+    int profundidad(nodo n) const;
     AbinEnla(const AbinEnla<T> &A);
     AbinEnla<T> &operator=(const AbinEnla<T> &A);
     ~AbinEnla();
@@ -177,6 +179,39 @@ template <typename T>
 AbinEnla<T>::~AbinEnla()
 {
     destruirNodos(r);
+}
+
+template <typename T>
+int AbinEnla<T>::profundidad(nodo n) const
+{
+    assert(n != NODO_NULO);
+    int i = 0;
+
+    while (n != r)
+    {
+        ++i;
+        n = n->padre;
+    }
+
+    return i;
+}
+
+template <typename T>
+int AbinEnla<T>::altura(nodo n) const
+{
+    if (n == NODO_NULO)
+        return -1;
+
+    else
+    {
+        int aizq = altura(n->hizq),
+            ader = altura(n->hder);
+
+        if (aizq > ader)
+            return aizq + 1;
+        else
+            return ader + 1;
+    }
 }
 
 /*------------------------------------------------*/
