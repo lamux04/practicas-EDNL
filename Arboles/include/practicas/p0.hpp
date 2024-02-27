@@ -3,26 +3,33 @@
 
 #include "Implementaciones/Arbol_binario_celdas_enlazadas.h"
 
-template <typename T> int NumNodosAbin(const AbinEnla<T>& A);
-template <typename T> int NumNodosAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A);
-template <typename T> int AlturaAbin(const AbinEnla<T>& A);
-template <typename T> int AlturaAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A);
-template <typename T> int ProfundidadAbin(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A);
-template <typename T> int DesequilibroAbin(const AbinEnla<T>& A);
-template <typename T> int DesequilibrioAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A);
-template <typename T> bool PseudocompletoAbin(const AbinEnla<T>& A);
-template <typename T> bool PseudocompletoAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A, int p_nivel, int nivel);
-
-
+template <typename T>
+int NumNodosAbin(const AbinEnla<T> &A);
+template <typename T>
+int NumNodosAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A);
+template <typename T>
+int AlturaAbin(const AbinEnla<T> &A);
+template <typename T>
+int AlturaAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A);
+template <typename T>
+int ProfundidadAbin(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A);
+template <typename T>
+int DesequilibroAbin(const AbinEnla<T> &A);
+template <typename T>
+int DesequilibrioAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A);
+template <typename T>
+bool PseudocompletoAbin(const AbinEnla<T> &A);
+template <typename T>
+bool PseudocompletoAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A, int p_nivel, int nivel);
 
 template <typename T>
-int NumNodosAbin(const AbinEnla<T>& A)
+int NumNodosAbin(const AbinEnla<T> &A)
 {
     return NumNodosAbin_REC(A.raiz(), A);
 }
 
 template <typename T>
-int NumNodosAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A)
+int NumNodosAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A)
 {
     if (n == AbinEnla<T>::NODO_NULO)
         return 0;
@@ -31,13 +38,13 @@ int NumNodosAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A)
 }
 
 template <typename T>
-int AlturaAbin(const AbinEnla<T>& A)
+int AlturaAbin(const AbinEnla<T> &A)
 {
     return AlturaAbin_REC(A.raiz(), A);
 }
 
 template <typename T>
-int AlturaAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A)
+int AlturaAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A)
 {
     if (n == AbinEnla<T>::NODO_NULO)
         return -1;
@@ -54,13 +61,13 @@ int AlturaAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A)
 }
 
 template <typename T>
-int ProfundidadAbin(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A)
+int ProfundidadAbin(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A)
 {
     return ProfundidadAbinF(n, A, 0);
 }
 
 template <typename T>
-int ProfundidadAbinF(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A, int p)
+int ProfundidadAbinF(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A, int p)
 {
     if (n == A.raiz())
         return p;
@@ -69,7 +76,7 @@ int ProfundidadAbinF(typename AbinEnla<T>::nodo n, const AbinEnla<T>& A, int p)
 }
 
 template <typename T>
-int DesequilibroAbin(const AbinEnla<T>& A)
+int DesequilibroAbin(const AbinEnla<T> &A)
 {
     return DesequilibrioAbin_REC(A.raiz(), A);
 }
@@ -97,7 +104,7 @@ int DesequilibrioAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A)
 }
 
 template <typename T>
-bool PseudocompletoAbin(const AbinEnla<T>& A)
+bool PseudocompletoAbin(const AbinEnla<T> &A)
 {
     return PseudocompletoAbin_REC(A.raiz(), A, AlturaAbin(A) - 1, 0);
 }
@@ -120,6 +127,5 @@ bool PseudocompletoAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A, 
         return (PseudocompletoAbin_REC(A.hijoIzqdo(n), A, p_nivel, nivel + 1) && PseudocompletoAbin_REC(A.hijoDrcho(n), A, p_nivel, nivel + 1));
     }
 }
-
 
 #endif

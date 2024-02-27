@@ -8,9 +8,10 @@ template <typename T>
 class AbinVec
 {
     struct celda;
+
 public:
     typedef size_t nodo;
-    static const nodo NODO_NULO;    // Propiedad de la clase
+    static const nodo NODO_NULO; // Propiedad de la clase
     AbinVec(size_t n);
     void insertarRaiz(const T &e);
     void insertarHijoIzqdo(nodo n, const T &e);
@@ -54,8 +55,8 @@ const typename AbinVec<T>::nodo AbinVec<T>::NODO_NULO(__SIZE_MAX__);
 template <typename T>
 inline AbinVec<T>::AbinVec(size_t maxNodos) : numNodos(0), maxNodos(maxNodos), nodos(new celda[maxNodos]) {}
 
-template <typename T> 
-inline void AbinVec<T>::insertarRaiz(const T& e)
+template <typename T>
+inline void AbinVec<T>::insertarRaiz(const T &e)
 {
     assert(numNodos == 0);
     nodos[0].elto = e;
@@ -65,8 +66,8 @@ inline void AbinVec<T>::insertarRaiz(const T& e)
     numNodos = 1;
 }
 
-template <typename T> 
-inline void AbinVec<T>::insertarHijoIzqdo(nodo n, const T& e)
+template <typename T>
+inline void AbinVec<T>::insertarHijoIzqdo(nodo n, const T &e)
 {
     assert(n >= 0 && n <= numNodos - 1);
     assert(nodos[n].hizq == NODO_NULO);
@@ -80,13 +81,13 @@ inline void AbinVec<T>::insertarHijoIzqdo(nodo n, const T& e)
     ++numNodos;
 }
 
-template <typename T> 
-inline void AbinVec<T>::insertarHijoDrcho(nodo n, const T& e)
+template <typename T>
+inline void AbinVec<T>::insertarHijoDrcho(nodo n, const T &e)
 {
     assert(n >= 0 && n <= numNodos - 1);
     assert(nodos[n].hder == NODO_NULO);
     assert(numNodos < maxNodos);
-    
+
     nodos[n].hder = numNodos;
     nodos[numNodos].elto = e;
     nodos[numNodos].hizq = NODO_NULO;
@@ -95,14 +96,14 @@ inline void AbinVec<T>::insertarHijoDrcho(nodo n, const T& e)
     ++numNodos;
 }
 
-template <typename T> 
+template <typename T>
 void AbinVec<T>::eliminarHijoIzqdo(nodo n)
 {
     nodo nodo_eliminar;
     assert(n >= 0 && n <= numNodos - 1);
     assert(nodos[n].hizq != NODO_NULO);
     nodo_eliminar = nodos[n].hizq
-    assert(nodos[nodo_eliminar].hizq == NODO_NULO && nodos[nodo_eliminar].hder == NODO_NULO);
+                        assert(nodos[nodo_eliminar].hizq == NODO_NULO && nodos[nodo_eliminar].hder == NODO_NULO);
 
     if (n != numNodos - 1)
     {
@@ -125,14 +126,14 @@ void AbinVec<T>::eliminarHijoIzqdo(nodo n)
     --numNodos;
 }
 
-template <typename T> 
+template <typename T>
 void AbinVec<T>::eliminarHijoDrcho(nodo n)
 {
     nodo nodo_eliminar;
     assert(n >= 0 && n <= numNodos - 1);
     assert(nodos[n].hder != NODO_NULO);
     nodo_eliminar = nodos[n].hder
-    assert(nodos[nodo_eliminar].hizq == NODO_NULO && nodos[nodo_eliminar].hder == NODO_NULO);
+                        assert(nodos[nodo_eliminar].hizq == NODO_NULO && nodos[nodo_eliminar].hder == NODO_NULO);
 
     if (n != numNodos - 1)
     {
@@ -155,55 +156,63 @@ void AbinVec<T>::eliminarHijoDrcho(nodo n)
     --numNodos;
 }
 
-template <typename T> 
+template <typename T>
 inline void AbinVec<T>::eliminarRaiz()
 {
     assert(numNodos == 1);
     --numNodos;
 }
 
-template <typename T> 
+template <typename T>
 inline bool AbinVec<T>::arbolVacio() const
 {
     return numNodos == 0;
 }
 
-template <typename T> 
-inline const T& AbinVec<T>::elemento(nodo n) const
+template <typename T>
+inline const T &AbinVec<T>::elemento(nodo n) const
 {
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].elto;
 }
 
-template <typename T> 
-inline T& AbinVec<T>::elemento(nodo n)
+template <typename T>
+inline T &AbinVec<T>::elemento(nodo n)
 {
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].elto;
 }
 
-template <typename T> inline
-typename AbinVec<T>::nodo AbinVec<T>::raiz() const
+template <typename T>
+inline
+    typename AbinVec<T>::nodo
+    AbinVec<T>::raiz() const
 {
     return numNodos == 0 ? NODO_NULO : 0;
 }
 
-template <typename T> inline
-typename AbinVec<T>::nodo AbinVec<T>::padre(nodo n) const
+template <typename T>
+inline
+    typename AbinVec<T>::nodo
+    AbinVec<T>::padre(nodo n) const
 {
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].padre;
 }
 
-template <typename T> inline
-typename AbinVec<T>::nodo AbinVec<T>::hijoIzqdo(nodo n) const
+template <typename T>
+inline
+    typename AbinVec<T>::nodo
+    AbinVec<T>::hijoIzqdo(nodo n) const
 {
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].hizq;
 }
 
-template <typename T> inline
-typename AbinVec<T>::nodo AbinVec<T>::hijoDrcho(nodo n) const
+template <typename T>
+inline
+    typename AbinVec<T>::nodo
+    AbinVec<T>::hijoDrcho(nodo n) const
 {
     assert(n >= 0 && n <= numNodos - 1);
     return nodos[n].hder;
@@ -242,12 +251,10 @@ int AbinVec<T>::altura(nodo n) const
     }
 }
 
-
 template <typename T>
-AbinVec<T>::AbinVec(const AbinVec<T> &A) :   
-    numNodos(A.numNodos), 
-    maxNodos(A.maxNodos), 
-    nodos(new celda[A.maxNodos])
+AbinVec<T>::AbinVec(const AbinVec<T> &A) : numNodos(A.numNodos),
+                                           maxNodos(A.maxNodos),
+                                           nodos(new celda[A.maxNodos])
 {
     for (int i = 0; i < A.numNodos; ++i)
         nodos[i] = A.nodos[i];
@@ -260,7 +267,7 @@ AbinVec<T>::~AbinVec()
 }
 
 template <typename T>
-AbinVec<T>& AbinVec<T>::operator=(const AbinVec<T> &A)
+AbinVec<T> &AbinVec<T>::operator=(const AbinVec<T> &A)
 {
     if (this != &A)
     {
