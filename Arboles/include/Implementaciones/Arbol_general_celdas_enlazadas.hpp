@@ -7,55 +7,57 @@ template <typename T>
 class AgenEnla
 {
     struct celda;
+
 public:
     typedef celda *nodo;
     static const nodo NODO_NULO;
 
     AgenEnla();
-    void insertarRaiz(const T& e);
-    void insertarHijoIzqdo(nodo n, const T& e);
-    void insertarHermDrcho(nodo n, const T& e);
+    void insertarRaiz(const T &e);
+    void insertarHijoIzqdo(nodo n, const T &e);
+    void insertarHermDrcho(nodo n, const T &e);
     void eliminarHijoIzqdo(nodo n);
     void eliminarHermDrcho(nodo n);
     void eliminarRaiz();
-    const T& elemento(nodo n) const;
-    T& elemento(nodo n);
+    const T &elemento(nodo n) const;
+    T &elemento(nodo n);
     nodo raiz() const;
     nodo padre(nodo n) const;
     nodo hijoIzqdo(nodo n) const;
     nodo hermDrcho(nodo n) const;
-    AgenEnla(const T& A);
-    AgenEnla<T>& operator=(const T& A);
+    AgenEnla(const AgenEnla<T> &A);
+    AgenEnla<T> &operator=(const AgenEnla<T> &A);
     ~AgenEnla();
+
 private:
     struct celda
     {
         T elto;
         nodo padre, hizq, heder;
-        celda(const T& e, nodo p = NODO_NULO) : elto(e), padre(p), hizq(NODO_NULO), heder(NODO_NULO) {}
-    }
+        celda(const T &e, nodo p = NODO_NULO) : elto(e), padre(p), hizq(NODO_NULO), heder(NODO_NULO) {}
+    };
 
     nodo r;
 
-    void destruirNodos(nodo& n);
+    void destruirNodos(nodo &n);
     nodo copiar(nodo n);
 };
 
 template <typename T>
-static const typename AgenEnla<T>::nodo AgenEnla<T>::NODO_NULO{ nullptr };
+const typename AgenEnla<T>::nodo AgenEnla<T>::NODO_NULO{nullptr};
 
 template <typename T>
 inline AgenEnla<T>::AgenEnla() : r(NODO_NULO) {}
 
 template <typename T>
-inline void AgenEnla<T>::insertarRaiz(const T& e)
+inline void AgenEnla<T>::insertarRaiz(const T &e)
 {
     assert(r == NODO_NULO);
     r = new celda(e);
 }
 
 template <typename T>
-inline void AgenEnla<T>::insertarHijoIzqdo(nodo n, const T& e)
+inline void AgenEnla<T>::insertarHijoIzqdo(nodo n, const T &e)
 {
     assert(n != NODO_NULO);
 
@@ -65,7 +67,7 @@ inline void AgenEnla<T>::insertarHijoIzqdo(nodo n, const T& e)
 }
 
 template <typename T>
-inline void AgenEnla<T>::insertarHermDrcho(nodo n, const T& e)
+inline void AgenEnla<T>::insertarHermDrcho(nodo n, const T &e)
 {
     assert(n != NODO_NULO);
 
@@ -113,7 +115,7 @@ inline void AgenEnla<T>::eliminarRaiz()
 }
 
 template <typename T>
-inline const T& AgenEnla<T>::elemento(nodo n) const
+inline const T &AgenEnla<T>::elemento(nodo n) const
 {
     assert(n != NODO_NULO);
 
@@ -121,7 +123,7 @@ inline const T& AgenEnla<T>::elemento(nodo n) const
 }
 
 template <typename T>
-inline T& AgenEnla<T>::elemento(nodo n)
+inline T &AgenEnla<T>::elemento(nodo n)
 {
     assert(n != NODO_NULO);
 
@@ -129,13 +131,13 @@ inline T& AgenEnla<T>::elemento(nodo n)
 }
 
 template <typename T>
-inline AgenEnla<T>::nodo AgenEnla<T>::raiz() const
+inline typename AgenEnla<T>::nodo AgenEnla<T>::raiz() const
 {
     return r;
 }
 
 template <typename T>
-inline AgenEnla<T>::nodo AgenEnla<T>::padre(nodo n) const
+inline typename AgenEnla<T>::nodo AgenEnla<T>::padre(nodo n) const
 {
     assert(n != NODO_NULO);
 
@@ -143,7 +145,7 @@ inline AgenEnla<T>::nodo AgenEnla<T>::padre(nodo n) const
 }
 
 template <typename T>
-inline AgenEnla<T>::nodo AgenEnla<T>::hijoIzqdo(nodo n) const
+inline typename AgenEnla<T>::nodo AgenEnla<T>::hijoIzqdo(nodo n) const
 {
     assert(n != NODO_NULO);
 
@@ -151,7 +153,7 @@ inline AgenEnla<T>::nodo AgenEnla<T>::hijoIzqdo(nodo n) const
 }
 
 template <typename T>
-inline AgenEnla<T>::nodo AgenEnla<T>::hermDrcho(nodo n) const
+inline typename AgenEnla<T>::nodo AgenEnla<T>::hermDrcho(nodo n) const
 {
     assert(n != NODO_NULO);
 
@@ -159,13 +161,13 @@ inline AgenEnla<T>::nodo AgenEnla<T>::hermDrcho(nodo n) const
 }
 
 template <typename T>
-inline AgenEnla<T>::AgenEnla(const AgenEnlat<T>& A)
+AgenEnla<T>::AgenEnla(const AgenEnla<T> &A)
 {
     r = copiar(A.r);
 }
 
 template <typename T>
-AgenEnla<T>& AgenEnla<T>::operator=(const AgenEnla<T>& A)
+AgenEnla<T> &AgenEnla<T>::operator=(const AgenEnla<T> &A)
 {
     if (this != &A)
     {
@@ -183,7 +185,7 @@ AgenEnla<T>::~AgenEnla()
 }
 
 template <typename T>
-void AgenEnla<T>::destruirNodos(nodo& n)
+void AgenEnla<T>::destruirNodos(nodo &n)
 {
     if (n != NODO_NULO)
     {
@@ -225,8 +227,7 @@ typename AgenEnla<T>::nodo AgenEnla<T>::copiar(nodo n)
             }
         }
     }
-    return m
+    return m;
 }
-
 
 #endif
