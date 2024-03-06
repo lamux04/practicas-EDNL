@@ -8,9 +8,11 @@
 #include "pruebas/AbinRel_Prueba.h"
 
 #include "pruebas/pruebas_p0.hpp"
+#include "pruebas/pruebas_p1.hpp"
 
 int main()
 {
     AgenEnla<int> A;
+    prueba_reflejado_abin();
     return 0;
 }
