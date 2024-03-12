@@ -13,6 +13,6 @@
 int main()
 {
     AgenEnla<int> A;
-    prueba_reflejado_abin();
+    prueba_expresion_aritmetica();
     return 0;
 }

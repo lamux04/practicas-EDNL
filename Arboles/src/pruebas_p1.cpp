@@ -3,6 +3,7 @@
 #include "E-S/abinEnla_E-S.h"
 
 #include "practicas/p1.hpp"
+#include "practicas/p1-3.hpp"
 
 void prueba_similares_abin()
 {
@@ -37,5 +38,22 @@ void prueba_reflejado_abin()
 
     B = ReflejadoAbin(A);
     imprimirAbin(B);
+
+}
+
+void prueba_expresion_aritmetica()
+{
+    using namespace std;
+    AbinEnla<elem> A;
+
+    A.insertarRaiz(elem(SUMA));
+    A.insertarHijoIzqdo(A.raiz(), elem(5));
+    A.insertarHijoDrcho(A.raiz(), elem(PROD));
+    A.insertarHijoIzqdo(A.hijoDrcho(A.raiz()), elem(4));
+    A.insertarHijoDrcho(A.hijoDrcho(A.raiz()), elem(2));
+
+
+
+    cout << "Expresion aritmetica (11) -> " << ExpresionInfija(A) << endl;
 
 }
