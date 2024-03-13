@@ -12,7 +12,7 @@ class AbinVec2
 public:
     typedef size_t nodo;
     static const nodo NODO_NULO; // Propiedad de la clase
-    AbinVec2(size_t n, T nulo);
+    AbinVec2(size_t H, T nulo);
     void insertarRaiz(const T &e);
     void insertarHijoIzqdo(nodo n, const T &e);
     void insertarHijoDrcho(nodo n, const T &e);
@@ -32,10 +32,11 @@ public:
     AbinVec2<T> &operator=(const AbinVec2<T> &A);
     ~AbinVec2();
 private:
-    size_t maxNodos;
+    size_t alturaMax, maxNodos;
     const T ELTO_NULO;
     T *nodos;
     int altura(nodo n);
+    int profundidad(nodo n, int inicio, int fin);
 };
 
 template <typename T>
@@ -81,7 +82,21 @@ typename AbinVec2<T>::nodo AbinVec2<T>::padre(nodo n) const
 template <typename T>
 int AbinVec2<T>::altura(nodo n)
 {
+    return H - profundidad(n, 0, tamMax - 1);
+}
 
+template <typename T>
+int AbinVec2<T>::profundidad(nodo n, int inicio, int fin)
+{
+    int centro = (inicio + fin) / 2;
+
+    if (n == centro)
+        return 0;
+    else
+        if (n < centro)
+            return 1 + profundidad(n, inicio, centro);
+        else
+            return 1 + profundidad(n, centro, fin);
 }
 
 #endif

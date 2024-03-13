@@ -85,7 +85,7 @@ template <typename T>
 int DesequilibrioAbin_REC(typename AbinEnla<T>::nodo n, const AbinEnla<T> &A)
 {
     if (n == AbinEnla<T>::NODO_NULO)
-        return -1;
+        return 0;
 
     else
     {
