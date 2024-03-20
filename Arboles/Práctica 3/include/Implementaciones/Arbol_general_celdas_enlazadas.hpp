@@ -79,7 +79,7 @@ inline void AgenEnla<T>::insertarHermDrcho(nodo n, const T &e)
     assert(n != NODO_NULO);
 
     nodo t = n->heder;
-    n->heder = new celda(e, n);
+    n->heder = new celda(e, n->padre);
     n->heder->heder = t;
 }
 
