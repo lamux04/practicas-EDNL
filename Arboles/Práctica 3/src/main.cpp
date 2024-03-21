@@ -7,5 +7,5 @@
 
 int main()
 {
-    prueba_profundidad_agen();
+    prueba_podar_agen();
 }

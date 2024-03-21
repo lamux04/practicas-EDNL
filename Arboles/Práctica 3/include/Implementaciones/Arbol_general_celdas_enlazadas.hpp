@@ -103,7 +103,7 @@ inline void AgenEnla<T>::eliminarHermDrcho(nodo n)
     nodo heder;
 
     assert(n != NODO_NULO);
-    heder = n->hder;
+    heder = n->heder;
     assert(heder != NODO_NULO);
     assert(heder->hizq == NODO_NULO);
 
