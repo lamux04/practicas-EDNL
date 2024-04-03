@@ -22,9 +22,12 @@ void imprimirElementos(const Abb<T>& A)
 template <typename T>
 void imprimirElementos_REC(const Abb<T>& A)
 {
-    imprimirElementos(A.izqdo());
-    std::cout << A.elemento() << " ";
-    imprimirElementos(A.drcho());
+    if (!A.vacio())
+    {
+        imprimirElementos_REC(A.izqdo());
+        std::cout << A.elemento() << " ";
+        imprimirElementos_REC(A.drcho());
+    }
 }
 
 #endif

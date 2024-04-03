@@ -25,7 +25,7 @@ private:
         T elto;
         Abb izq, der;
         arbol(const T& e) : elto{ e }, izq{}, der{} {}
-    }
+    };
 
     arbol *r;
     T borrarMin();

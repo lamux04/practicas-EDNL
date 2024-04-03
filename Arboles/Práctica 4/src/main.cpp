@@ -1,10 +1,9 @@
 #include <iostream>
 
-#include "Implementaciones/Arbol_general_celdas_enlazadas.hpp"
-#include "E-S/agen_E-S.h"
+#include "Implementaciones/Arbol_binario_busqueda.hpp"
+
+#include "pruebas/pruebas_p4.hpp"
 
 int main() {
-    AgenEnla<char> A;
-    rellenarAgen(A, '$');
-    imprimirAgen(A);
+    prueba_equilibrar_abb();
 }
