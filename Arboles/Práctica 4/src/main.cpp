@@ -5,5 +5,5 @@
 #include "pruebas/pruebas_p4.hpp"
 
 int main() {
-    prueba_equilibrar_abb();
+    prueba_union_conjuntos();
 }

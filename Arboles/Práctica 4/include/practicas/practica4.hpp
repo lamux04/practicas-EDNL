@@ -19,6 +19,9 @@ void deAbbAVector(const Abb<T>& A, T v[], int& i);
 template <typename T>
 void deVectorAAbb(int inicio, int fin, Abb<T>& A, T v[]);
 
+template <typename T>
+using Conjunto = Abb<T>;
+
 
 template <typename T>
 void podarAbb(T x, Abb<T>& A)
@@ -83,5 +86,24 @@ void deVectorAAbb(int inicio, int fin, Abb<T>& A, T v[])
     }
 }
 
+template <typename T>
+void AgregarElementos_REC(const Conjunto<T>& A, Conjunto<T>& C)
+{
+    if (!A.vacio())
+    {
+        C.insertar(A.elemento());
+        AgregarElementos_REC(A.izqdo(), C);
+        AgregarElementos_REC(A.drcho(), C);
+    }
+}
+
+template <typename T>
+Conjunto<T> UnionConjuntos(const Conjunto<T>& A, const Conjunto<T>& B)
+{
+    Conjunto<T> C = A;
+    AgregarElementos_REC(B, C);
+    equilibrarAbb(C);
+    return C;
+}
 
 #endif
