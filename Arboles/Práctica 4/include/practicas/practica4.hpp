@@ -72,13 +72,12 @@ void deVectorAAbb(int inicio, int fin, Abb<T>& A, T v[])
 {
     int centro = (inicio + fin) / 2;
 
-    if (inicio > fin)
+    if (inicio <= fin)
     {
         if (inicio == fin)
             A.insertar(v[centro]);
         else
         {
-            std::cout << "Inserta el centro " << v[centro] << std::endl;
             A.insertar(v[centro]);
             deVectorAAbb(inicio, centro - 1, A, v);
             deVectorAAbb(centro + 1, fin, A, v);
