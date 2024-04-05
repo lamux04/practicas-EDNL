@@ -105,4 +105,58 @@ Conjunto<T> UnionConjuntos(const Conjunto<T>& A, const Conjunto<T>& B)
     return C;
 }
 
+template <typename T>
+bool perteneceConjunto(const Conjunto<T>& A, const T& x)
+{
+    return !A.buscar(x).vacio();
+}
+
+template <typename T>
+void InterseccionConjuntos_REC(const Conjunto<T>& A, const Conjunto<T>& B, Conjunto<T>& C)
+{
+    if (!A.vacio())
+    {
+        if (perteneceConjunto(B, A.elemento()))
+            C.insertar(A.elemento());
+        InterseccionConjuntos_REC(A.izqdo(), B, C);
+        InterseccionConjuntos_REC(A.drcho(), B, C);
+    }
+}
+
+template <typename T>
+Conjunto<T> InterseccionConjuntos(const Conjunto<T>& A, const Conjunto<T>& B)
+{
+    Conjunto<T> C;
+    InterseccionConjuntos_REC(A, B, C);
+    equilibrarAbb(C);
+    return C;
+}
+
+template <typename T>
+void diferenciaConjuntos_REC(const Conjunto<T>& A, const Conjunto<T>& B, Conjunto<T>& C)
+{
+    if (!A.vacio())
+    {
+        if (!perteneceConjunto(B, A.elemento()))
+            C.insertar(A.elemento());
+        diferenciaConjuntos_REC(A.izqdo(), B, C);
+        diferenciaConjuntos_REC(A.drcho(), B, C);
+    }
+}
+
+template <typename T>
+Conjunto<T> diferenciaConjuntos(const Conjunto<T>& A, const Conjunto<T>& B)
+{
+    Conjunto<T> C;
+    diferenciaConjuntos_REC(A, B, C);
+    equilibrarAbb(C);
+    return C;
+}
+
+template <typename T>
+Conjunto<T> OperadorEspecial(const Conjunto<T>& A, const Conjunto<T>& B)
+{
+    return diferenciaConjuntos(UnionConjuntos(A, B), InterseccionConjuntos(A, B));
+}
+
 #endif
