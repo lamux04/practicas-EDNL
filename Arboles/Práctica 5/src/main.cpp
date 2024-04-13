@@ -1,9 +1,7 @@
 #include <iostream>
 
-#include "Implementaciones/Arbol_binario_busqueda.hpp"
-
-#include "pruebas/pruebas_p4.hpp"
+#include "pruebas/pruebas_p5.hpp"
 
 int main() {
-    prueba_operador_especial();
+    pruebaEstrictamenteTernario();
 }
